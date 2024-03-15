@@ -13,7 +13,7 @@ def getdata(name):
     datacountreg = re.compile(r'<span class="sr-only">(.*?) contribution')
     datadate = datadatereg.findall(data)
     datacount = datacountreg.findall(data)
-    datacount = list(map(int, [0 if i == "No" else i for i in datacount]))
+    datacount = list(map(int, [0 if i == "No" else (1 if i == 'Low' else i) for i in datacount]))
 
     # 将datadate和datacount按照字典序排序
     sorted_data = sorted(zip(datadate, datacount))
