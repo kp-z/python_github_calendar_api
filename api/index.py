@@ -7,35 +7,36 @@ import json
 def list_split(items, n):
     return [items[i:i + n] for i in range(0, len(items), n)]
 def getdata(name):
-    gitpage = requests.get("https://github.com/" + name)
-    data = gitpage.text
-    print( "All data: ", data)
-    datadatereg = re.compile(r'data-date="(.*?)" data-level')
+    return name
+    # gitpage = requests.get("https://github.com/" + name)
+    # data = gitpage.text
+    # print( "All data: ", data)
+    # datadatereg = re.compile(r'data-date="(.*?)" data-level')
 
-    print( "datadatereg: ", datadatereg)
-    datacountreg = re.compile(r'<span class="sr-only">(.*?) contribution')
-    print( "datacountreg: ", datacountreg)
-    datadate = datadatereg.findall(data)
-    print( "datadate: ", datadate)
-    datacount = datacountreg.findall(data)
-    print("Data account: " , datacount)    
-    datacount = list(map(int, [0 if i == "No" else i for i in datacount]))
+    # print( "datadatereg: ", datadatereg)
+    # datacountreg = re.compile(r'<span class="sr-only">(.*?) contribution')
+    # print( "datacountreg: ", datacountreg)
+    # datadate = datadatereg.findall(data)
+    # print( "datadate: ", datadate)
+    # datacount = datacountreg.findall(data)
+    # print("Data account: " , datacount)    
+    # datacount = list(map(int, [0 if i == "No" else i for i in datacount]))
 
-    # 将datadate和datacount按照字典序排序
-    sorted_data = sorted(zip(datadate, datacount))
-    datadate, datacount = zip(*sorted_data)
+    # # 将datadate和datacount按照字典序排序
+    # sorted_data = sorted(zip(datadate, datacount))
+    # datadate, datacount = zip(*sorted_data)
     
-    contributions = sum(datacount)
-    datalist = []
-    for index, item in enumerate(datadate):
-        itemlist = {"date": item, "count": datacount[index]}
-        datalist.append(itemlist)
-    datalistsplit = list_split(datalist, 7)
-    returndata = {
-        "total": contributions,
-        "contributions": datalistsplit
-    }
-    return returndata
+    # contributions = sum(datacount)
+    # datalist = []
+    # for index, item in enumerate(datadate):
+    #     itemlist = {"date": item, "count": datacount[index]}
+    #     datalist.append(itemlist)
+    # datalistsplit = list_split(datalist, 7)
+    # returndata = {
+    #     "total": contributions,
+    #     "contributions": datalistsplit
+    # }
+    # return returndata
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         data = getdata('kp-z')
