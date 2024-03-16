@@ -13,7 +13,7 @@ def getdata(name):
     datacountreg = re.compile(r'<span class="sr-only">(.*?) contribution')
     datadate = datadatereg.findall(data)
     datacount = datacountreg.findall(data)
-    datacount = list(map(int, [0 if i == "No" else (1 if i == 'Low' else i) for i in datacount]))
+    datacount = list(map(int, [0 if i == "No" else i for i in datacount]))
 
     # 将datadate和datacount按照字典序排序
     sorted_data = sorted(zip(datadate, datacount))
@@ -32,9 +32,7 @@ def getdata(name):
     return returndata
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        path = self.path
-        user = 'kp-z'
-        data = getdata(user)
+        data = getdata('kp-z')
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Content-type', 'application/json')
