@@ -9,20 +9,17 @@ def list_split(items, n):
 def getdata(name):
     gitpage = requests.get("https://github.com/" + name)
     data = gitpage.text
-    print(data)
+    print( "All data: ", data)
     datadatereg = re.compile(r'data-date="(.*?)" data-level')
-    datacountreg = re.compile(r'<span class="sr-only">(.*?) contribution')
-    datadate = datadatereg.findall(data)
-    datacount = datacountreg.findall(data)
-    print(datacount)
 
-    # 使用字典映射将特定的字符串转换为整数
-    str_to_int = {"No": 0, "Low": 1, "Medium-low": 2, "Medium-high": 3, "High": 4}
-    
-    # 使用map函数和lambda表达式进行转换
-    datacount = list(map(lambda x: str_to_int[x], datacount))
-    
-    # datacount = list(map(int, [0 if i == "No" else i for i in datacount]))
+    print( "datadatereg: ", datadatereg)
+    datacountreg = re.compile(r'<span class="sr-only">(.*?) contribution')
+    print( "datacountreg: ", datacountreg)
+    datadate = datadatereg.findall(data)
+    print( "datadate: ", datadate)
+    datacount = datacountreg.findall(data)
+    print("Data account: " , datacount)    
+    datacount = list(map(int, [0 if i == "No" else i for i in datacount]))
 
     # 将datadate和datacount按照字典序排序
     sorted_data = sorted(zip(datadate, datacount))
