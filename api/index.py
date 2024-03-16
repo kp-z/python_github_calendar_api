@@ -7,7 +7,7 @@ import json
 def list_split(items, n):
     return [items[i:i + n] for i in range(0, len(items), n)]
 def getdata(name):
-    gitpage = requests.get("https://github.com/" + name)
+    gitpage = requests.get("https://github.com/kp-z")
     data = gitpage.text
     print( "All data: ", data)
     datadatereg = re.compile(r'data-date="(.*?)" data-level')
