@@ -1,5 +1,4 @@
 # -*- coding: UTF-8 -*-
-pip install beautifulsoup4
 import requests
 from http.server import BaseHTTPRequestHandler
 import json
