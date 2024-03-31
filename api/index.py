@@ -28,6 +28,9 @@ def getdata(name):
     
     # 2023-11-22 更新正则 https://github.com/Zfour/python_github_calendar_api/issues/18
     datadatereg = re.compile(r'data-date="(.*?)" id="contribution-day-component')
+    match = datadatereg.search(data)
+    if match:
+        print('Date:', match.group(1)) 
     datacountreg = re.compile(r'<tool-tip .*?class="sr-only position-absolute">(.*?) contribution')
     print(data)
     datadate = datadatereg.findall(data)
