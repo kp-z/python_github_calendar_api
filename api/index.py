@@ -11,15 +11,19 @@ def getdata(name):
     gitpage = requests.get("https://github.com/" + name)
     print(gitpage)
     data = gitpage.text
-    print(data)
+    # print(data)
     
     # 2023-11-22 更新正则 https://github.com/Zfour/python_github_calendar_api/issues/18
     datadatereg = re.compile(r'data-date="(.*?)" id="contribution-day-component')
+    print(datadatereg)
     datacountreg = re.compile(r'<tool-tip .*?class="sr-only position-absolute">(.*?) contribution')
+    print(datacountreg)
     
     datadate = datadatereg.findall(data)
+    print(datadate)
     datacount = datacountreg.findall(data)
     datacount = list(map(int, [0 if i == "No" else i for i in datacount]))
+    print(datacount)
 
     # 检查datadate和datacount是否为空
     if not datadate or not datacount:
