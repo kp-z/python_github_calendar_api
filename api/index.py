@@ -2,7 +2,14 @@
 import requests
 from http.server import BaseHTTPRequestHandler
 import json
-from bs4 import BeautifulSoup
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    install("beautifulsoup4")
+    from bs4 import BeautifulSoup
 
 def list_split(items, n):
     return [items[i:i + n] for i in range(0, len(items), n)]
