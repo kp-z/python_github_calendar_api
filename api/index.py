@@ -7,7 +7,9 @@ import json
 def list_split(items, n):
     return [items[i:i + n] for i in range(0, len(items), n)]
 def getdata(name):
+    print(name)
     gitpage = requests.get("https://github.com/" + name)
+    print(gitpage)
     data = gitpage.text
     
     # 2023-11-22 更新正则 https://github.com/Zfour/python_github_calendar_api/issues/18
