@@ -11,6 +11,7 @@ def getdata(name):
     gitpage = requests.get("https://github.com/" + name)
     print(gitpage)
     data = gitpage.text
+    print(data)
     
     # 2023-11-22 更新正则 https://github.com/Zfour/python_github_calendar_api/issues/18
     datadatereg = re.compile(r'data-date="(.*?)" id="contribution-day-component')
