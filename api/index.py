@@ -32,7 +32,6 @@ def getdata(name):
     if match:
         print('Date:', match.group(1)) 
     datacountreg = re.compile(r'<tool-tip .*?class="sr-only position-absolute">(.*?) contribution')
-    print(data)
     datadate = datadatereg.findall(data)
     print(datadate)
     datacount = datacountreg.findall(data)
